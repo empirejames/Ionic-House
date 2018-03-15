@@ -18,6 +18,7 @@ import {RegisterPage} from '../register/register'
 })
 export class LoginPage {
   responseData : any;
+  statusLogin : any;
   registerCredentials = {"username":"", "password":""};
   loading: Loading;
   //registerCredentials = { email: '', password: '' };
@@ -27,14 +28,18 @@ export class LoginPage {
     this.navCtrl.push(RegisterPage);
   }
 
-
   public login(){
+    this.showLoading();
     this.authService.postData(this.registerCredentials, 'login').then((result)=>{
-      console.log(result);
       this.responseData = result;
-      console.log(result);
-      localStorage.setItem('userData',JSON.stringify(this.responseData));
-      this.navCtrl.push(HomePage);
+      this.statusLogin = JSON.stringify(this.responseData);
+      const data = JSON.parse(this.statusLogin);
+      if(!data.userData){
+        this.showError(data.error.text);
+      }else{
+        localStorage.setItem('userData',JSON.stringify(this.responseData));
+        this.navCtrl.push(HomePage);
+      }
     },(err)=>{
       alert("ERR");
       //Connect fail
@@ -67,12 +72,11 @@ export class LoginPage {
  
   showError(text) {
     this.loading.dismiss();
- 
     let alert = this.alertCtrl.create({
       title: 'Fail',
       subTitle: text,
       buttons: ['OK']
     });
-    //alert.present(prompt);
+    alert.present();
   }
 }
