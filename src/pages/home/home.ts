@@ -30,4 +30,8 @@ export class HomePage {
       this.navCtrl.setRoot(LoginPage)
     });
   }
+  cellOne(){
+    console.log("Cell 1");
+    alert("Cell 1");
+  }
 }

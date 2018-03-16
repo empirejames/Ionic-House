@@ -1,8 +1,51 @@
 page-home {
-    .home {
+    .grid-full ion-row {
       background: #56CA96;
+      height: 100%;
+      padding: 40px;
+      flex-wrap: wrap;
     }
-    .logo{
-      height: 100px 
-  }
+    ion-icon {
+      font-size: 50px; //Preferred size here
+    }
+    .btn-text{
+      font-size: 25px;
+    }
+    .btn-full{
+      height: 100%;
+      width: 100%;
+      background-color:#489074 ;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+    }
+    
+    .grid-full ion-col {
+      flex: 0 0 50%;
+      max-width: 100%;
+      text-align: center;
+      padding: 5px 5px;
+    }
+    
+    .cell-1 {
+      
+    }
+    .cell-2 {
+      
+    }
+    .cell-3 {
+     
+    }
+    .cell-4 {
+      
+    }
+    .cell-5 {
+    }
+    .cell-6 {
+    }
+    .cell-7 {
+    }
+    .cell-8 {
+    }
   }
