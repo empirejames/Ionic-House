@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "106517323064",
+    "firebase_url": "https://ionichouse.firebaseio.com",
+    "project_id": "ionichouse",
+    "storage_bucket": "ionichouse.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106517323064:android:42a671982c4b4aa4",
+        "android_client_info": {
+          "package_name": "com.james.house"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "106517323064-s32gghge7sacapbbklfltcqhcfqqe88v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSyQkDsBpp6MikObFh74UbB0b1KT5sfrw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
