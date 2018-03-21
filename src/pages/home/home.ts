@@ -2,6 +2,8 @@ import { AuthServiceProvider } from './../../providers/auth-service/auth-service
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {LoginPage} from '../login/login'
+
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -15,7 +17,6 @@ export class HomePage {
   userPostData = {"user_id":"","token":""};
   constructor(public navCtrl: NavController , private auth: AuthServiceProvider) {
     const data = JSON.parse(localStorage.getItem('userData'));
-
     this.userDetails = data.userData;
     //console.log(this.userDetails.token);
     //this.userPostData.user_id = this.userDetails.user_id;
