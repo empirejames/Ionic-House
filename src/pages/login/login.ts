@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController, LoadingController, Loading } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController, Loading, Platform } from 'ionic-angular';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import {HomePage} from '../home/home'
 import {RegisterPage} from '../register/register'
-
+import { LocalNotifications } from '@ionic-native/local-notifications';
 /**
  * Generated class for the LoginPage page.
  *
@@ -22,7 +22,16 @@ export class LoginPage {
   registerCredentials = {"username":"", "password":""};
   loading: Loading;
   //registerCredentials = { email: '', password: '' };
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController,public localNotifications : LocalNotifications, public platform: Platform, public navParams: NavParams, private authService: AuthServiceProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
+    this.platform.ready().then(()=>{
+      this.localNotifications.on('click',(notification, status) =>{
+        let json = JSON.parse(notification.data);
+        let alart = this.alertCtrl.create({
+          title: notification.title,
+          subTitle: notification.message
+        })
+      })
+    })
   }
   public createAccount() {
     this.navCtrl.push(RegisterPage);

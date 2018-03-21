@@ -85,5 +85,6 @@
         <variable name="SENDER_ID" value="106517323064" />
         <variable name="FCM_VERSION" value="11.6.2" />
     </plugin>
+    <plugin name="cordova-plugin-local-notification" spec="^0.9.0-beta.2" />
     <engine name="android" spec="7.0.0" />
 </widget>

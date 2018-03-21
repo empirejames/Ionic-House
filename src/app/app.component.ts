@@ -1,22 +1,25 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   rootPage:any = LoginPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private push: Push) {
+  constructor(platform: Platform, statusBar: StatusBar,public alertCtrl : AlertController, splashScreen: SplashScreen, private push: Push, private localNotifications: LocalNotifications) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
       this.pushSetup();
+
     });
   }
   pushSetup(){
@@ -40,7 +43,18 @@ export class MyApp {
     .then(e => {
       var str = JSON.stringify(notification);
       var res = JSON.parse(str);
-      alert(res[0]);
+      this.localNotifications.schedule({
+        id:1,
+        title: res.title,
+        text: res.message,
+        at: new Date(new Date().getTime() + 5 * 1000),
+        led:"FF0000",
+        sound:"../assets/music/slow-spring-board.mp3",
+        data:{
+         myData: 'Start up application' 
+        } 
+      });
+
       console.log('Received a notification', res);
       console.log('Received a notification', notification);
     })

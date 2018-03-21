@@ -12,7 +12,7 @@ var registrationToken = 'd4z_JFbcTcE:APA91bH781ZuUIagmy7DRBm6mZ2WNNi7w57HoELM3OG
 var message = {
   data: {
      title: "Test Notification",
-        body: "Success",
+        body: "APP start Success",
         surveyID : "asdasdasdasdasdasdasd"
   },
   token: registrationToken
