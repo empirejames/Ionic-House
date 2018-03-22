@@ -7,6 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
 export interface MenuItem {
     title: string;
@@ -22,11 +23,15 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
   appMenuItems: Array<MenuItem>;
   userDetails:any;
-  constructor(platform: Platform, statusBar: StatusBar,public alertCtrl : AlertController, splashScreen: SplashScreen, private push: Push, private localNotifications: LocalNotifications) {
+  constructor(platform: Platform, statusBar: StatusBar,public alertCtrl : AlertController, splashScreen: SplashScreen, private push: Push, private localNotifications: LocalNotifications
+  , public auth: AuthServiceProvider) {
     this.pages = [
       { title: 'Homepage', component: InfomationPage },
       { title: 'Settings', component: InfomationPage },
       { title: 'Account', component: InfomationPage }
+    ];
+    this.appMenuItems = [
+      {title: '首頁', component: HomePage, icon: 'home'}
     ];
     const data = JSON.parse(localStorage.getItem('userData'));
     this.userDetails = data.userData;
@@ -46,7 +51,9 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 logout(){
-  this.nav.setRoot(LoginPage);
+  this.auth.logout().subscribe(succ => {
+    this.nav.setRoot(LoginPage)
+  });
 }
 
   pushSetup(){

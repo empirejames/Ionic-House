@@ -1,3 +1,4 @@
+
 import { Push } from '@ionic-native/push';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,25 +15,34 @@ import { RegisterPage } from './../pages/register/register';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { InfomationPage } from './../pages/infomation/infomation';
+import { AnnoucePage } from './../pages/annouce/annouce';
 
+import {IonicStorageModule} from '@ionic/storage';
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LoginPage,
     InfomationPage,
+    AnnoucePage,
     RegisterPage
   ],
   imports: [
     BrowserModule,HttpClientModule,HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot({
+      name: '__ionic3_start_theme',
+        driverOrder: ['indexeddb', 'sqlite', 'websql']
+    })
   ],
+  
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     LoginPage,
     InfomationPage,
+    AnnoucePage,
     RegisterPage
   ],
   providers: [

@@ -1,0 +1,24 @@
+<ion-header>
+
+  <ion-navbar color="darkgreen">
+    <ion-title>
+      <strong>社區公告</strong>
+  </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <div class="list-no-border">
+    <!--nearby places-->
+    <ion-item *ngFor="let item of places.nearby" tappable (click)="searchBy(item)">
+      <ion-icon name="md-locate" item-left color="primary"></ion-icon>
+      <span ion-text color="primary">{{ item.name }}</span>
+    </ion-item>
+    <!--recent places-->
+    <ion-item *ngFor="let item of places.recent" tappable (click)="searchBy(item)">
+      <ion-icon name="md-time" item-left color="primary"></ion-icon>
+      <span ion-text color="primary">{{ item.name }}</span>
+    </ion-item>
+  </div>
+</ion-content>

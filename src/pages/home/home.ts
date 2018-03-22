@@ -1,7 +1,8 @@
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {LoginPage} from '../login/login'
+import {LoginPage} from '../login/login';
+import {AnnoucePage} from '../annouce/annouce';
 
 
 @Component({
@@ -34,5 +35,8 @@ export class HomePage {
   cellOne(){
     console.log("Cell 1");
     alert("Cell 1");
+  }
+  goAnnouce(from) {
+    this.navCtrl.push(AnnoucePage, from);
   }
 }
