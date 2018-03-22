@@ -1,18 +1,31 @@
-import { Component } from '@angular/core';
-import { Platform, AlertController } from 'ionic-angular';
+import { InfomationPage } from './../pages/infomation/infomation';
+import { HomePage } from '../pages/home/home';
+import { Component, ViewChild } from '@angular/core';
+import { Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LoginPage;
-
+  @ViewChild(Nav) nav: Nav;
+  rootPage:any = HomePage;
+  pages: Array<{title: string, component: any}>;
+  userDetails:any;
   constructor(platform: Platform, statusBar: StatusBar,public alertCtrl : AlertController, splashScreen: SplashScreen, private push: Push, private localNotifications: LocalNotifications) {
+    this.pages = [
+      { title: 'Homepage', component: InfomationPage },
+      { title: 'Settings', component: InfomationPage },
+      { title: 'Account', component: InfomationPage }
+    ];
+    const data = JSON.parse(localStorage.getItem('userData'));
+    this.userDetails = data.userData;
+   
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -21,6 +34,11 @@ export class MyApp {
       this.pushSetup();
 
     });
+  }
+  openPage(page) {
+    // Reset the content nav to have just this page
+    // we wouldn't want the back button to show in this scenario
+    this.nav.setRoot(page.component);
   }
   pushSetup(){
     const options: PushOptions = {
@@ -54,8 +72,6 @@ export class MyApp {
          myData: 'Start up application' 
         } 
       });
-
-      console.log('Received a notification', res);
       console.log('Received a notification', notification);
     })
     .catch(e => { console.log("ERROR NOTIFICATION",e); })

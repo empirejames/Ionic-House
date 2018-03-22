@@ -13,12 +13,14 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from './../pages/register/register';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { InfomationPage } from './../pages/infomation/infomation';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LoginPage,
+    InfomationPage,
     RegisterPage
   ],
   imports: [
@@ -30,6 +32,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     MyApp,
     HomePage,
     LoginPage,
+    InfomationPage,
     RegisterPage
   ],
   providers: [

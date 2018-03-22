@@ -6,7 +6,7 @@ admin.initializeApp({
   databaseURL: 'https://ionichouse.firebaseio.com'
 });
 
-var registrationToken = 'd4z_JFbcTcE:APA91bH781ZuUIagmy7DRBm6mZ2WNNi7w57HoELM3OGVCOp2-y8KCKvfgWWjPAwsP7qUoQKixS3VTkkSSkxuGtsVgRYBFesyMeGD_bVAUD-V0JXTfNFnj0bgOv_sezvQ2F3_UsjaH7nC';
+var registrationToken = 'dwAZJ2Jn9K0:APA91bHtnTromS1l8FRmhQYgDuVWOUN6L6W-f5rn4RdS4y4oLvfR_RS9Ig9F-1DkSQntVgMGfoKRpMRkuRIKraGG15aAu7CTaOgodoUWtg2kSwBMcN_RkKoVPMBxfnJ5NTj11PlCIF3o';
 
 // See documentation on defining a message payload.
 var message = {

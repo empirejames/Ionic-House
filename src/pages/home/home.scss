@@ -5,8 +5,11 @@ page-home {
       padding: 20px;
       flex-wrap: wrap;
     }
-    ion-icon {
-      font-size: 50px; //Preferred size here
+    .icon-logout{
+      font-size: 25px;
+    }
+    .icon-size{
+      font-size: 50px;
     }
     .btn-text{
       font-size: 20px;

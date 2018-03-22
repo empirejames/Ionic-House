@@ -1,76 +1,80 @@
 <ion-header>
-  <ion-navbar color="darkgreen">
-    <ion-title>
-      功能列表
-    </ion-title>
-    <ion-buttons end>
-      <button ion-button (click)="logout()">
-        <ion-icon name="log-out"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
+    <ion-navbar color="darkgreen">
+            <button ion-button icon-only menuToggle>
+                <ion-icon name="menu"></ion-icon>
+            </button>
+        <ion-title>
+            功能列表
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button (click)="logout()">
+                <ion-icon class="icon-logout"name="log-out"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+    
 </ion-header>
 
 <ion-content class="grid-full">
-  <!--<h3>Welcome {{userDetails.username}}!</h3>
+    <!--<h3>Welcome {{userDetails.username}}!</h3>
   Your Email is: {{userDetails.email}}-->
 
-  <ion-row>
-      <ion-col class="cell-1" >
-          <button ion-button class="btn-full" (click)="cellOne()">
-              <ion-icon ios="ios-color-filter" md="md-color-filter">
-                <ion-label class="btn-text">訊息通知</ion-label>
-              </ion-icon>
-          </button>
-      </ion-col>
-      <ion-col class="cell-2">
-          <button ion-button class="btn-full">
-              <ion-icon ios="ios-home" md="md-home">
-                <ion-label class="btn-text">社區公告</ion-label>
-              </ion-icon>
-          </button>
-      </ion-col>
-      <ion-col class="cell-3">
-          <button ion-button class="btn-full">
-              <ion-icon ios="ios-clipboard" md="md-clipboard">
-                <ion-label class="btn-text">瓦斯登記</ion-label>
-              </ion-icon>
-          </button>
-      </ion-col>
-      <ion-col class="cell-4">
-          <button ion-button class="btn-full">
-              <ion-icon ios="ios-basket" md="md-basket">
-                <ion-label class="btn-text">福利採購</ion-label>
-              </ion-icon>
-          </button>
-      </ion-col>
-      <ion-col class="cell-5">
-          <button ion-button class="btn-full">
-              <ion-icon ios="ios-bicycle" md="md-bicycle">
-                <ion-label class="btn-text">社區活動</ion-label>
-              </ion-icon>
-          </button>
-      </ion-col>
-      <ion-col class="cell-6">
-          <button ion-button class="btn-full">
-              <ion-icon ios="logo-bitcoin" md="logo-bitcoin">
-                <ion-label class="btn-text">繳費管理</ion-label>
-              </ion-icon>
-          </button>
-      </ion-col>
-      <ion-col class="cell-7">
-          <button ion-button class="btn-full">
-              <ion-icon ios="ios-happy" md="md-happy">
-                <ion-label class="btn-text">意見反應</ion-label>
-              </ion-icon>
-          </button>
-      </ion-col>
-      <ion-col class="cell-8">
-          <button ion-button class="btn-full">
-              <ion-icon ios="ios-stats" md="md-stats">
-                <ion-label class="btn-text">投票專區</ion-label>
-              </ion-icon>
-          </button>
-      </ion-col>
+    <ion-row>
+        <ion-col class="cell-1">
+            <button ion-button class="btn-full" (click)="cellOne()">
+                <ion-icon class="icon-size" ios="ios-color-filter" md="md-color-filter">
+                    <ion-label class="btn-text">訊息通知</ion-label>
+                </ion-icon>
+            </button>
+        </ion-col>
+        <ion-col class="cell-2">
+            <button ion-button class="btn-full">
+                <ion-icon class="icon-size" ios="ios-home" md="md-home">
+                    <ion-label class="btn-text">社區公告</ion-label>
+                </ion-icon>
+            </button>
+        </ion-col>
+        <ion-col class="cell-3">
+            <button ion-button class="btn-full">
+                <ion-icon class="icon-size" ios="ios-clipboard" md="md-clipboard">
+                    <ion-label class="btn-text">瓦斯登記</ion-label>
+                </ion-icon>
+            </button>
+        </ion-col>
+        <ion-col class="cell-4">
+            <button ion-button class="btn-full">
+                <ion-icon class="icon-size" ios="ios-basket" md="md-basket">
+                    <ion-label class="btn-text">福利採購</ion-label>
+                </ion-icon>
+            </button>
+        </ion-col>
+        <ion-col class="cell-5">
+            <button ion-button class="btn-full">
+                <ion-icon class="icon-size" ios="ios-bicycle" md="md-bicycle">
+                    <ion-label class="btn-text">社區活動</ion-label>
+                </ion-icon>
+            </button>
+        </ion-col>
+        <ion-col class="cell-6">
+            <button ion-button class="btn-full">
+                <ion-icon class="icon-size" ios="logo-bitcoin" md="logo-bitcoin">
+                    <ion-label class="btn-text">繳費管理</ion-label>
+                </ion-icon>
+            </button>
+        </ion-col>
+        <ion-col class="cell-7">
+            <button ion-button class="btn-full">
+                <ion-icon class="icon-size" ios="ios-happy" md="md-happy">
+                    <ion-label class="btn-text">意見反應</ion-label>
+                </ion-icon>
+            </button>
+        </ion-col>
+        <ion-col class="cell-8">
+            <button ion-button class="btn-full">
+                <ion-icon class="icon-size" ios="ios-stats" md="md-stats">
+                    <ion-label class="btn-text">投票專區</ion-label>
+                </ion-icon>
+            </button>
+        </ion-col>
     </ion-row>
 </ion-content>
