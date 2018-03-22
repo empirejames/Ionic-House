@@ -47,7 +47,7 @@ export class LoginPage {
         this.showError(data.error.text);
       }else{
         localStorage.setItem('userData',JSON.stringify(this.responseData));
-        this.navCtrl.push(HomePage);
+        this.navCtrl.setRoot(HomePage);
       }
     },(err)=>{
       alert("ERR");

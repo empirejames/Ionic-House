@@ -8,14 +8,19 @@ import { LoginPage } from '../pages/login/login';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 
-
+export interface MenuItem {
+    title: string;
+    component: any;
+    icon: string;
+}
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage:any = HomePage;
+  rootPage:any = LoginPage;
   pages: Array<{title: string, component: any}>;
+  appMenuItems: Array<MenuItem>;
   userDetails:any;
   constructor(platform: Platform, statusBar: StatusBar,public alertCtrl : AlertController, splashScreen: SplashScreen, private push: Push, private localNotifications: LocalNotifications) {
     this.pages = [
@@ -40,6 +45,10 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+logout(){
+  this.nav.setRoot(LoginPage);
+}
+
   pushSetup(){
     const options: PushOptions = {
       android: {

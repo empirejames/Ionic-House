@@ -1,18 +1,20 @@
 <ion-header>
     <ion-navbar color="darkgreen">
-            <button ion-button icon-only menuToggle>
-                <ion-icon name="menu"></ion-icon>
-            </button>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
         <ion-title>
-            功能列表
+            <strong>功能列表</strong>
         </ion-title>
         <ion-buttons end>
-            <button ion-button (click)="logout()">
-                <ion-icon class="icon-logout"name="log-out"></ion-icon>
+            <button ion-button tappable>
+                <ion-icon name="notifications"></ion-icon>
+            </button>
+            <button ion-button tappable>
+                <ion-icon name="cog"></ion-icon>
             </button>
         </ion-buttons>
     </ion-navbar>
-    
 </ion-header>
 
 <ion-content class="grid-full">

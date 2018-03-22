@@ -11,7 +11,7 @@
 <ion-content class="login-content" padding>
   <ion-row class="logo-row">
     <ion-col>
-        <img src="assets/imgs/house.png" class="logo" text-center/>
+        <img src="assets/imgs/house.png" class="logo animated fadeInDown" text-center/>
     </ion-col>
   </ion-row>
   <div class="login-box">
@@ -32,7 +32,7 @@
       
       <ion-row>
         <ion-col class="signup-col">
-          <button ion-button class="submit-btn" (click)="login()" full type="submit" [disabled]="!registerForm.form.valid">Login</button>
+          <button ion-button class="submit-btn" icon-start (click)="login()" full type="submit" [disabled]="!registerForm.form.valid">Login</button>
           <button ion-button class="register-btn" block clear (click)="createAccount()">Create New Account</button>
         </ion-col>
       </ion-row>
