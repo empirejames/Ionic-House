@@ -1,9 +1,9 @@
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {LoginPage} from '../login/login';
-import {AnnoucePage} from '../annouce/annouce';
-
+import { LoginPage } from '../login/login';
+import { AnnoucePage } from '../annouce/annouce';
+import { ActivityPage } from '../activity/activity';
 
 @Component({
   selector: 'page-home',
@@ -38,5 +38,8 @@ export class HomePage {
   }
   goAnnouce(from) {
     this.navCtrl.push(AnnoucePage, from);
+  }
+  goActivity(){
+    this.navCtrl.push(ActivityPage);
   }
 }

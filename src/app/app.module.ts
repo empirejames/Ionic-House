@@ -16,6 +16,9 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { InfomationPage } from './../pages/infomation/infomation';
 import { AnnoucePage } from './../pages/annouce/annouce';
+import { ActivityPage } from './../pages/activity/activity';
+import {ActivityDetailPage} from "../pages/activity-detail/activity-detail";
+import {TripService} from "../services/trip-service";
 
 import {IonicStorageModule} from '@ionic/storage';
 @NgModule({
@@ -25,6 +28,8 @@ import {IonicStorageModule} from '@ionic/storage';
     LoginPage,
     InfomationPage,
     AnnoucePage,
+    ActivityPage,
+    ActivityDetailPage,
     RegisterPage
   ],
   imports: [
@@ -43,6 +48,8 @@ import {IonicStorageModule} from '@ionic/storage';
     LoginPage,
     InfomationPage,
     AnnoucePage,
+    ActivityPage,
+    ActivityDetailPage,
     RegisterPage
   ],
   providers: [
@@ -50,6 +57,7 @@ import {IonicStorageModule} from '@ionic/storage';
     SplashScreen,
     Push,
     LocalNotifications,
+    TripService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider
   ]
