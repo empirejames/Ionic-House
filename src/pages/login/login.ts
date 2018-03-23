@@ -50,7 +50,7 @@ export class LoginPage {
         this.navCtrl.setRoot(HomePage);
       }
     },(err)=>{
-      alert("ERR");
+      this.showError(err);
       //Connect fail
     });
   }

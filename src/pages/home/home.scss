@@ -5,6 +5,14 @@ page-home {
       padding: 20px;
       flex-wrap: wrap;
     }
+    .btn-badge{
+      background-color: red;
+            position: absolute;
+            top: 0px;
+            right:0px;
+            font-size: 20px;
+            border-radius: 25%;
+    }
     .icon-logout{
       font-size: 25px;
     }
@@ -17,6 +25,8 @@ page-home {
     .btn-full{
       height: 100%;
       width: 100%;
+      overflow: visible!important;
+      position: relative;
       background-color:#489074 ;
       border-top-left-radius: 15px;
       border-top-right-radius: 15px;
