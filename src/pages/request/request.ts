@@ -63,7 +63,7 @@ export class RequestPage {
       cameraDirection: this.camera.Direction.FRONT,
       destinationType: this.camera.DestinationType.DATA_URL
     }).then((imageData) => {
-      this.user.imageUrl = imageData;
+      this.user.imageUrl = "data:image/jpeg;base64,"+imageData;
     }, (err) => {
       this.toastCtrl.create('Error: ' + err);
     });
