@@ -1,3 +1,4 @@
+
 import { InfomationPage } from './../pages/infomation/infomation';
 import { HomePage } from '../pages/home/home';
 import { Component, ViewChild } from '@angular/core';
@@ -8,6 +9,7 @@ import { LoginPage } from '../pages/login/login';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+
 
 export interface MenuItem {
     title: string;

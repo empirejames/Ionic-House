@@ -4,7 +4,8 @@ import { NavController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { AnnoucePage } from '../annouce/annouce';
 import { ActivityPage } from '../activity/activity';
-
+import { RequestPage } from './../request/request';
+import { InfomationPage }from './../infomation/infomation';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -32,14 +33,16 @@ export class HomePage {
       this.navCtrl.setRoot(LoginPage)
     });
   }
-  cellOne(){
-    console.log("Cell 1");
-    alert("Cell 1");
-  }
   goAnnouce(from) {
     this.navCtrl.push(AnnoucePage, from);
   }
   goActivity(){
     this.navCtrl.push(ActivityPage);
+  }
+  goRequest(){
+    this.navCtrl.push(RequestPage);
+  }
+  goInfomation(){
+    this.navCtrl.push(InfomationPage);
   }
 }

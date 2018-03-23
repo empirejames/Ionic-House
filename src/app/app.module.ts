@@ -17,8 +17,12 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
 import { InfomationPage } from './../pages/infomation/infomation';
 import { AnnoucePage } from './../pages/annouce/annouce';
 import { ActivityPage } from './../pages/activity/activity';
-import {ActivityDetailPage} from "../pages/activity-detail/activity-detail";
-import {TripService} from "../services/trip-service";
+import { ActivityDetailPage } from "../pages/activity-detail/activity-detail";
+import { TripService } from "../services/trip-service";
+import { ToastService } from '../providers/util/toast.service';
+import { AlertService } from '../providers/util/alert.service';
+import { RequestPage } from './../pages/request/request';
+import { Camera } from '@ionic-native/camera';
 
 import {IonicStorageModule} from '@ionic/storage';
 @NgModule({
@@ -30,6 +34,7 @@ import {IonicStorageModule} from '@ionic/storage';
     AnnoucePage,
     ActivityPage,
     ActivityDetailPage,
+    RequestPage,
     RegisterPage
   ],
   imports: [
@@ -50,6 +55,7 @@ import {IonicStorageModule} from '@ionic/storage';
     AnnoucePage,
     ActivityPage,
     ActivityDetailPage,
+    RequestPage,
     RegisterPage
   ],
   providers: [
@@ -58,6 +64,9 @@ import {IonicStorageModule} from '@ionic/storage';
     Push,
     LocalNotifications,
     TripService,
+    ToastService,
+    AlertService,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider
   ]
