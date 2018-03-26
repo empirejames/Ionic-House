@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 let apiUrl = "http://lazetime-001-site3.gtempurl.com/loginTest/PHP-Slim-Restful/api/";
+let apiPut = "http://lazetime-001-site3.gtempurl.com/api/v1/announcement/";
+let apiGet = "http://lazetime-001-site3.gtempurl.com/api/v1/announcement/id/";
 /*
   Generated class for the AuthServiceProvider provider.
 
@@ -44,6 +46,30 @@ export class AuthServiceProvider {
     });
   });
   }
+
+  public putData(credentials, type){
+    return new Promise((resolve, reject)=>{ 
+      let headers = new HttpHeaders();
+     this.http.put(apiPut+type, JSON.stringify(credentials), {headers: headers}).
+      subscribe(res =>{
+        resolve(res);
+      },(err)=>{
+        reject(err);
+    });
+  });
+  }
+  public getData(credentials, id){
+    return new Promise((resolve, reject)=>{ 
+      let headers = new HttpHeaders();
+     this.http.get(apiGet+id).
+      subscribe(res =>{
+        resolve(res);
+      },(err)=>{
+        reject(err);
+    });
+  });
+  }
+
 
 
   public login(credentials) {

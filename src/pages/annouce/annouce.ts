@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams , Loading, AlertController} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
+import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 /**
  * Generated class for the AnnoucePage page.
@@ -15,39 +17,43 @@ import {Storage} from '@ionic/storage';
   templateUrl: 'annouce.html',
 })
 export class AnnoucePage {
+  annouceCredentials = {"id":"", "title":"", "content":"", "created":"", "creator_id":""};
+  responseData : any;
+  statusLogin : any;
+  displayData = [];
+  loading: Loading;
+
+  info: string = "read";
+  todo : FormGroup;
   public fromto: any;
-  public places = {
-    nearby: [{
-      id: 1,
-      name: "Current Location"
-    }, {
-      id: 2,
-      name: "Rio de Janeiro, Brazil"
-    }, {
-      id: 3,
-      name: "São Paulo, Brazil"
-    }, {
-      id: 4,
-      name: "New York, United States"
-    }, {
-      id: 5,
-      name: "London, United Kingdom"
-    }, {
-      id: 6,
-      name: "Same as pickup"
-    }],
-    recent: [{
-      id: 1,
-      name: "Rio de Janeiro"
-    }]
-  };
-  constructor(private storage: Storage, public nav: NavController, public navParams: NavParams) {
+
+  constructor(private storage: Storage, public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider, public alertCtrl: AlertController
+  ,private formBuilder: FormBuilder) {
     this.fromto = this.navParams.data;
+    this.todo = this.formBuilder.group({
+      title: ['', Validators.required],
+      content: ['', Validators.required],
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AnnoucePage');
+    this.authService.getData(this.annouceCredentials, '').then((result)=>{
+
+      this.responseData = result;
+      this.statusLogin = JSON.stringify(this.responseData);
+      this.displayData = JSON.parse(this.statusLogin);
+      console.log(this.displayData);
+    },(err)=>{
+      this.showError(err);
+      //Connect fail
+    });
   }
+  submitForm(value: any):void{
+    console.log(value.title);
+    console.log(value.content);
+  }
+
   searchBy(item) {
     if (this.fromto === 'from') {
       this.storage.set('pickup', item.name);
@@ -57,7 +63,15 @@ export class AnnoucePage {
       this.storage.set('dropOff', item.name);
     }
     // this.nav.push(SearchCarsPage);
-    this.nav.pop();
+    this.navCtrl.pop();
+  }
+  showError(text) {
+    let alert = this.alertCtrl.create({
+      title: 'Fail',
+      subTitle: text,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

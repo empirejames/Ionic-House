@@ -21,7 +21,7 @@ export interface MenuItem {
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage:any = LoginPage;
+  rootPage:any = HomePage;
   pages: Array<{title: string, component: any}>;
   appMenuItems: Array<MenuItem>;
   userDetails:any;

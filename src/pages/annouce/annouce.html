@@ -3,22 +3,68 @@
   <ion-navbar color="darkgreen">
     <ion-title>
       <strong>社區公告</strong>
-  </ion-title>
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content>
   <div class="list-no-border">
-    <!--nearby places-->
-    <ion-item *ngFor="let item of places.nearby" tappable (click)="searchBy(item)">
+    <!--
+    <ion-item *ngFor="let item of displayData" tappable (click)="searchBy(item)">
       <ion-icon name="md-locate" item-left color="primary"></ion-icon>
-      <span ion-text color="primary">{{ item.name }}</span>
-    </ion-item>
-    <!--recent places-->
-    <ion-item *ngFor="let item of places.recent" tappable (click)="searchBy(item)">
-      <ion-icon name="md-time" item-left color="primary"></ion-icon>
-      <span ion-text color="primary">{{ item.name }}</span>
-    </ion-item>
+      <span ion-text color="primary">{{ item.title }}</span>
+    </ion-item>-->
+
+
+
+    <div padding>
+      <ion-segment [(ngModel)]="info">
+        <ion-segment-button value="read">
+          閱讀公告
+        </ion-segment-button>
+        <ion-segment-button value="write">
+          發布公告
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+    <div [ngSwitch]="info">
+      <ion-list *ngSwitchCase="'read'">
+        <ion-item>
+          <ion-card *ngFor="let item of displayData">
+            <ion-card-header class="cardheader">
+              {{ item.title }}
+            </ion-card-header>
+            <ion-card-content>
+              {{ item.content }}
+            </ion-card-content>
+            <ion-row class="cardfooter">
+              <ion-col>
+                <p>{{ item.created }}</p>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-item>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'write'">
+          <form [formGroup]="todo" (ngSubmit)="submitForm(todo.value)">
+        <ion-item>
+            <ion-label floating>主旨</ion-label>
+            <ion-input type="text" [formControl]="todo.controls['title']" name="title"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>內容</ion-label>
+            <ion-textarea [formControl]="todo.controls['content']" name="content"></ion-textarea>
+        </ion-item>
+        <ion-footer>
+            <ion-toolbar>
+                <button ion-button full type="submit">送出</button>
+            </ion-toolbar>
+          </ion-footer>
+          </form>
+      </ion-list>
+    </div>
   </div>
+
 </ion-content>
