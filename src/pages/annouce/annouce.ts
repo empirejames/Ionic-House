@@ -17,7 +17,7 @@ import {Validators, FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: 'annouce.html',
 })
 export class AnnoucePage {
-  annouceCredentials = {"id":"", "title":"", "content":"", "created":"", "creator_id":""};
+  annouceCredentials = {"id":"", "title":"", "content":"", "created":"", "user_id":""};
   responseData : any;
   statusLogin : any;
   displayData = [];
@@ -50,8 +50,25 @@ export class AnnoucePage {
     });
   }
   submitForm(value: any):void{
-    console.log(value.title);
-    console.log(value.content);
+    var myData =
+      { 
+        id:"2",
+        title: value.title,
+        content: value.content,
+        user_id: "James"
+     };
+      this.authService.postData(myData, '').then((result)=>{
+      this.responseData = result;
+      this.statusLogin = JSON.stringify(this.responseData);
+      this.displayData = JSON.parse(this.statusLogin);
+      console.log(this.displayData);
+    },(err)=>{
+      this.showError(err);
+      console.log(err);
+      //Connect fail
+    });
+    //console.log(value.title);
+    //console.log(value.content);
   }
 
   searchBy(item) {

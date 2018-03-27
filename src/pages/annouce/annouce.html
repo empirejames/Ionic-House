@@ -32,15 +32,18 @@
       <ion-list *ngSwitchCase="'read'">
         <ion-item>
           <ion-card *ngFor="let item of displayData">
-            <ion-card-header class="cardheader">
-              {{ item.title }}
+            <ion-card-header class="bar-positive">
+                <ion-icon ios="ios-create" md="md-create" item-right class="color1"></ion-icon>
+                <b> {{ item.title }}</b>
             </ion-card-header>
             <ion-card-content>
-              {{ item.content }}
+                <ion-row>
+                    <p align=center> {{ item.content }}</p>
+                  </ion-row>
             </ion-card-content>
             <ion-row class="cardfooter">
               <ion-col>
-                <p>{{ item.created }}</p>
+                <p align=right>{{ item.created }}</p>
               </ion-col>
             </ion-row>
           </ion-card>

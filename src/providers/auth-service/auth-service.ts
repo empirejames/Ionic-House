@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 let apiUrl = "http://lazetime-001-site3.gtempurl.com/loginTest/PHP-Slim-Restful/api/";
-let apiPut = "http://lazetime-001-site3.gtempurl.com/api/v1/announcement/";
+let apiNew = "http://lazetime-001-site3.gtempurl.com/api/v1/announcement/";
 let apiGet = "http://lazetime-001-site3.gtempurl.com/api/v1/announcement/id/";
 /*
   Generated class for the AuthServiceProvider provider.
@@ -33,24 +33,20 @@ export class AuthServiceProvider {
 
   public postData(credentials, type){
     return new Promise((resolve, reject)=>{ 
-      let headers = new HttpHeaders();
-     this.http.post(apiUrl+type, JSON.stringify(credentials), {headers: headers}).
+      let headers =  {'Content-Type': 'application/x-www-form-urlencoded', 'Accept':'application/json'};
+      this.http.post(apiNew, credentials, {headers: headers}).
       subscribe(res =>{
         resolve(res);
       },(err)=>{
         reject(err);
-        console.log('Error: ' + err.error);
-        console.log('Name: ' + err.name);
-        console.log('Message: ' + err.message);
-        console.log('Status: ' + err.status);
     });
   });
   }
 
   public putData(credentials, type){
     return new Promise((resolve, reject)=>{ 
-      let headers = new HttpHeaders();
-     this.http.put(apiPut+type, JSON.stringify(credentials), {headers: headers}).
+      let headers =  {'Content-Type': 'application/x-www-form-urlencoded', 'Accept':'application/json'};
+      this.http.put(apiNew, credentials, {headers: headers}).
       subscribe(res =>{
         resolve(res);
       },(err)=>{
