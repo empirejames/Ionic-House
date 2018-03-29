@@ -21,8 +21,9 @@ export class AnnoucePage {
   responseData : any;
   statusLogin : any;
   displayData = [];
+  updateResponse : any;
   loading: Loading;
-
+  userDetails : any;
   info: string = "read";
   todo : FormGroup;
   public fromto: any;
@@ -38,12 +39,17 @@ export class AnnoucePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AnnoucePage');
-    this.authService.getData(this.annouceCredentials, '').then((result)=>{
+    const data = JSON.parse(localStorage.getItem('userData'));
+    this.userDetails = data.userData;
+    this.loadingAnnouce();
+  }
 
+  loadingAnnouce(){
+    this.authService.getData(this.annouceCredentials, '').then((result)=>{
       this.responseData = result;
       this.statusLogin = JSON.stringify(this.responseData);
       this.displayData = JSON.parse(this.statusLogin);
-      console.log(this.displayData);
+      console.log(result);
     },(err)=>{
       this.showError(err);
       //Connect fail
@@ -52,16 +58,18 @@ export class AnnoucePage {
   submitForm(value: any):void{
     var myData =
       { 
-        id:"2",
         title: value.title,
         content: value.content,
-        user_id: "James"
-     };
+        user_id: this.userDetails.username
+      };
       this.authService.postData(myData, '').then((result)=>{
       this.responseData = result;
       this.statusLogin = JSON.stringify(this.responseData);
       this.displayData = JSON.parse(this.statusLogin);
-      console.log(this.displayData);
+      this.updateResponse = this.displayData;
+      console.log(this.updateResponse.message);
+      this.showSuccess(this.updateResponse.message);
+      this.loadingAnnouce();
     },(err)=>{
       this.showError(err);
       console.log(err);
@@ -84,11 +92,18 @@ export class AnnoucePage {
   }
   showError(text) {
     let alert = this.alertCtrl.create({
-      title: 'Fail',
+      title: '錯誤',
       subTitle: text,
       buttons: ['OK']
     });
     alert.present();
   }
-
+  showSuccess(text) {
+    let alert = this.alertCtrl.create({
+      title: '成功',
+      subTitle: text,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 }

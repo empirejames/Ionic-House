@@ -33,15 +33,18 @@
         <ion-item>
           <ion-card *ngFor="let item of displayData">
             <ion-card-header class="bar-positive">
-                <ion-icon ios="ios-create" md="md-create" item-right class="color1"></ion-icon>
-                <b> {{ item.title }}</b>
+              <ion-icon ios="ios-create" md="md-create" item-right class="color1"></ion-icon>
+              <b> {{ item.title }}</b>
             </ion-card-header>
             <ion-card-content>
-                <ion-row>
-                    <p align=center> {{ item.content }}</p>
-                  </ion-row>
+              <ion-row>
+                <p align=center> {{ item.content }}</p>
+              </ion-row>
             </ion-card-content>
             <ion-row class="cardfooter">
+              <ion-col>
+                <p align=left>作者 : {{ item.user_id }}</p>
+              </ion-col>
               <ion-col>
                 <p align=right>{{ item.created }}</p>
               </ion-col>
@@ -51,21 +54,24 @@
       </ion-list>
 
       <ion-list *ngSwitchCase="'write'">
-          <form [formGroup]="todo" (ngSubmit)="submitForm(todo.value)">
-        <ion-item>
+        <form [formGroup]="todo" (ngSubmit)="submitForm(todo.value)">
+          <ion-item>
+            <ion-label>用戶 : {{userDetails.username}}</ion-label>
+          </ion-item>
+          <ion-item>
             <ion-label floating>主旨</ion-label>
             <ion-input type="text" [formControl]="todo.controls['title']" name="title"></ion-input>
-        </ion-item>
-        <ion-item>
+          </ion-item>
+          <ion-item>
             <ion-label floating>內容</ion-label>
             <ion-textarea [formControl]="todo.controls['content']" name="content"></ion-textarea>
-        </ion-item>
-        <ion-footer>
+          </ion-item>
+          <ion-footer>
             <ion-toolbar>
-                <button ion-button full type="submit">送出</button>
+              <button ion-button full type="submit">送出</button>
             </ion-toolbar>
           </ion-footer>
-          </form>
+        </form>
       </ion-list>
     </div>
   </div>
