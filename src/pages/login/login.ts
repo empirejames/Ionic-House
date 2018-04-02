@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController, Loading, Platform } from 'ionic-angular';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
-import {HomePage} from '../home/home'
-import {RegisterPage} from '../register/register'
+import { HomePage } from '../home/home'
+import { RegisterPage } from '../register/register'
 import { LocalNotifications } from '@ionic-native/local-notifications';
 /**
  * Generated class for the LoginPage page.
@@ -17,14 +17,14 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  responseData : any;
-  statusLogin : any;
-  registerCredentials = {"username":"", "password":""};
+  responseData: any;
+  statusLogin: any;
+  registerCredentials = { "username": "", "password": "" };
+  loginData: String;
   loading: Loading;
-  //registerCredentials = { email: '', password: '' };
-  constructor(public navCtrl: NavController,public localNotifications : LocalNotifications, public platform: Platform, public navParams: NavParams, private authService: AuthServiceProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
-    this.platform.ready().then(()=>{
-      this.localNotifications.on('click',(notification, status) =>{
+  constructor(public navCtrl: NavController, public localNotifications: LocalNotifications, public platform: Platform, public navParams: NavParams, private authService: AuthServiceProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
+    this.platform.ready().then(() => {
+      this.localNotifications.on('click', (notification, status) => {
         let json = JSON.parse(notification.data);
         let alart = this.alertCtrl.create({
           title: notification.title,
@@ -37,30 +37,33 @@ export class LoginPage {
     this.navCtrl.push(RegisterPage);
   }
 
-  public login(){
+  public login() {
     this.showLoading();
-    this.authService.postData(this.registerCredentials, 'login').then((result)=>{
+    this.loginData = JSON.stringify(this.registerCredentials);
+    this.authService.post(this.loginData, 'login').then((result) => {
       this.responseData = result;
       this.statusLogin = JSON.stringify(this.responseData);
       const data = JSON.parse(this.statusLogin);
-      if(!data.userData){
-        this.showError(data.error.text);
-      }else{
-        localStorage.setItem('userData',JSON.stringify(this.responseData));
+      if (!data) {
+        this.showError("帳戶錯誤");
+        console.log(data);
+        //this.showError(data);
+      } else {
+        localStorage.setItem('userData', JSON.stringify(this.responseData));
         this.navCtrl.setRoot(HomePage);
       }
-    },(err)=>{
+    }, (err) => {
       this.showError(err);
       //Connect fail
     });
   }
- 
+
   // public login() {
   //   this.showLoading()
   //   this.auth.login(this.registerCredentials).subscribe(allowed => {
   //     alert("allowed is :"+ allowed);
   //     if (allowed) {     
-          
+
   //       this.navCtrl.push(HomePage);
   //     } else {
   //       this.showError("Access Denied");
@@ -70,7 +73,7 @@ export class LoginPage {
   //       this.showError(error);
   //     });
   // }
- 
+
   showLoading() {
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...',
@@ -78,7 +81,7 @@ export class LoginPage {
     });
     this.loading.present();
   }
- 
+
   showError(text) {
     this.loading.dismiss();
     let alert = this.alertCtrl.create({

@@ -40,7 +40,7 @@ export class AnnoucePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AnnoucePage');
     const data = JSON.parse(localStorage.getItem('userData'));
-    this.userDetails = data.userData;
+    this.userDetails = data;
     this.loadingAnnouce();
   }
 
@@ -60,15 +60,16 @@ export class AnnoucePage {
       { 
         title: value.title,
         content: value.content,
-        user_id: this.userDetails.username
+        //user_id: this.userDetails.username
+        user_id: "16"
       };
-      this.authService.postData(myData, '').then((result)=>{
+      this.authService.post(myData, 'announce').then((result)=>{
       this.responseData = result;
       this.statusLogin = JSON.stringify(this.responseData);
       this.displayData = JSON.parse(this.statusLogin);
       this.updateResponse = this.displayData;
-      console.log(this.updateResponse.message);
-      this.showSuccess(this.updateResponse.message);
+      //console.log(this.updateResponse.message);
+       this.showSuccess(this.updateResponse.message);
       this.loadingAnnouce();
     },(err)=>{
       this.showError(err);

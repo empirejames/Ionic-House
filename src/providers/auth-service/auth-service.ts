@@ -1,10 +1,10 @@
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-let apiUrl = "http://lazetime-001-site3.gtempurl.com/loginTest/PHP-Slim-Restful/api/";
-let apiNew = "http://lazetime-001-site3.gtempurl.com/api/v1/announcement/";
-let apiGet = "http://lazetime-001-site3.gtempurl.com/api/v1/announcement/id/";
+let apiLogin = "http://james.hct.tw/index.php/api/v1/login/";
+let apiNew = "http://james.hct.tw/index.php/api/v1/announcement/";
+let apiGet = "http://james.hct.tw/index.php/api/v1/announcement/id/";
 /*
   Generated class for the AuthServiceProvider provider.
 
@@ -15,7 +15,7 @@ let apiGet = "http://lazetime-001-site3.gtempurl.com/api/v1/announcement/id/";
 export class User {
   name: string;
   email: string;
- 
+
   constructor(name: string, email: string) {
     this.name = name;
     this.email = email;
@@ -30,40 +30,51 @@ export class AuthServiceProvider {
   constructor(public http: HttpClient) {
     console.log('Hello AuthServiceProvider Provider');
   }
+  public post(credentials, type) {
+    return new Promise((resolve, reject) => {
+      console.log(credentials);
+      let headers = { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' };
+      if (type === ("login")) {
+        this.http.post(apiLogin, credentials, { headers: headers }).
+          subscribe(res => {
+            resolve(res);
+          }, (err) => {
+            console.log(err);
+            reject(err);
+          });
+      }else if(type ==("announce")){
+        this.http.post(apiNew, credentials, { headers: headers }).
+        subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+      }
 
-  public postData(credentials, type){
-    return new Promise((resolve, reject)=>{ 
-      let headers =  {'Content-Type': 'application/x-www-form-urlencoded', 'Accept':'application/json'};
-      this.http.post(apiNew, credentials, {headers: headers}).
-      subscribe(res =>{
-        resolve(res);
-      },(err)=>{
-        reject(err);
     });
-  });
   }
 
-  public putData(credentials, type){
-    return new Promise((resolve, reject)=>{ 
-      let headers =  {'Content-Type': 'application/x-www-form-urlencoded', 'Accept':'application/json'};
-      this.http.put(apiNew, credentials, {headers: headers}).
-      subscribe(res =>{
-        resolve(res);
-      },(err)=>{
-        reject(err);
+  public put(credentials, type) {
+    return new Promise((resolve, reject) => {
+      let headers = { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' };
+      this.http.put(apiNew, credentials, { headers: headers }).
+        subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
     });
-  });
   }
-  public getData(credentials, id){
-    return new Promise((resolve, reject)=>{ 
+  public getData(credentials, id) {
+    return new Promise((resolve, reject) => {
       let headers = new HttpHeaders();
-     this.http.get(apiGet+id).
-      subscribe(res =>{
-        resolve(res);
-      },(err)=>{
-        reject(err);
+      this.http.get(apiGet + id).
+        subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
     });
-  });
   }
 
 
@@ -92,11 +103,11 @@ export class AuthServiceProvider {
       });
     }
   }
- 
-  public getUserInfo() : User {
+
+  public getUserInfo(): User {
     return this.currentUser;
   }
- 
+
   public logout() {
     return Observable.create(observer => {
       this.currentUser = null;

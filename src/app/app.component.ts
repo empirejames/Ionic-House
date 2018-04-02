@@ -1,4 +1,3 @@
-
 import { InfomationPage } from './../pages/infomation/infomation';
 import { HomePage } from '../pages/home/home';
 import { Component, ViewChild } from '@angular/core';
@@ -21,7 +20,7 @@ export interface MenuItem {
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage:any = HomePage;
+  rootPage:any = LoginPage;
   pages: Array<{title: string, component: any}>;
   appMenuItems: Array<MenuItem>;
   userDetails:any;
@@ -35,8 +34,10 @@ export class MyApp {
     this.appMenuItems = [
       {title: '首頁', component: HomePage, icon: 'home'}
     ];
+    
     const data = JSON.parse(localStorage.getItem('userData'));
-    this.userDetails = data.userData;
+    console.log(data);
+    this.userDetails = data;
    
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
