@@ -29,7 +29,7 @@ export class RegisterPage {
 
   public signup(){
     console.log(this.registerCredentials);
-    this.authService.postData(this.registerCredentials, 'signup').then((result)=>{
+    this.authService.post(this.registerCredentials, 'signup').then((result)=>{
       this.responseData = result;
       localStorage.setItem('userData',JSON.stringify(this.responseData));
       console.log(this.responseData);
